@@ -30,4 +30,9 @@ public  class OwnerService  {
         return ownerRepository.findAll();
     }
 
+    public Owner findById(Long ownerId) {
+        return ownerRepository.findById(ownerId).get();
+    }
+
+
 }
