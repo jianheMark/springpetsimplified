@@ -1,5 +1,6 @@
 package jian.he.springpetsimplified.service;
 
+import jian.he.springpetsimplified.model.Owner;
 import jian.he.springpetsimplified.model.Pet;
 import jian.he.springpetsimplified.repositories.OwnerRepository;
 import jian.he.springpetsimplified.repositories.PetRepository;
@@ -16,6 +17,11 @@ public class PetService {
     }
 
     public Pet save(Pet pet) {
-        return petRepository.save(pet);
+        Owner owner = ownerRepository.findById(pet.getId()).get();
+        Pet savedPet = new Pet();
+        savedPet.setOwner(owner);
+        savedPet.setName(pet.getName());
+        savedPet.setBirthDate(pet.getBirthDate());
+        return petRepository.save(savedPet);
     }
 }
